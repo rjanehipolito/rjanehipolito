@@ -37,7 +37,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='white' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctave[...]
     pointer-events: none;
     z-index: 9999;
     opacity: 0.4;
@@ -250,10 +250,12 @@
 
   .about-photo-wrapper {
     position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   .about-photo-placeholder {
-    width: 100%;
+    width: 280px;
     aspect-ratio: 3/4;
     background: var(--surface2);
     border: 1px solid rgba(201,168,76,0.15);
@@ -287,7 +289,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
+    display: block;
   }
 
   .photo-icon {
@@ -660,7 +662,7 @@
   <h1 class="hero-name">Raquel Jane<br><em>Hipolito</em></h1>
   <p class="hero-title">Inventory Specialist & E-commerce Strategist</p>
   <p class="hero-desc">
-    Freelance specialist with 10+ years of experience in supply chain management, e-commerce operations, and product content editing. I turn complex inventory challenges into streamlined, data-driven solutions.
+    Freelance specialist with 10+ years of experience in supply chain management, e-commerce operations, and product content editing. I turn complex inventory challenges into streamlined, data-driven [...]
   </p>
   <div class="hero-ctas">
     <a href="#experience" class="btn-primary">
@@ -685,17 +687,17 @@
   <div class="about-grid reveal">
     <!-- Photo Upload Area -->
     <div class="about-photo-wrapper">
-      <div class="about-photo-placeholder" id="photoBox" style="cursor:default;border:1px solid rgba(201,168,76,0.3);background:#161616;">
-        <img alt="Raquel Jane Hipolito" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDB" />
+      <div class="about-photo-placeholder" id="photoBox">
+        <img alt="Raquel Jane Hipolito" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwL[...]
       </div>
     </div>
     <!-- About Text -->
     <div class="about-text">
       <p>
-        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product content strategy.
+        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product con[...]
       </p>
       <p>
-        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving 50% webstore growth and 75% email open rates at Sumo Yoga, I've consistently delivered measurable impact across supply chain and e-commerce channels.
+        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving 50% webstore growth and 75% email open rates at S[...]
       </p>
       <p>
         I'm now available as a freelance specialist—ready to support brands with smarter supply chains, better product listings, and stronger e-commerce performance.
