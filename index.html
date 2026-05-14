@@ -565,6 +565,7 @@
     letter-spacing: 0.08em;
     transition: all 0.3s;
     background: var(--surface);
+    cursor: pointer;
   }
 
   .connect-btn:hover {
@@ -572,6 +573,28 @@
     color: var(--gold-light);
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Toast for copy feedback */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    background: var(--gold);
+    color: #0d0d0d;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 200;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
   }
 
   /* ─── FOOTER ─── */
@@ -891,9 +914,9 @@
   </p>
   <div class="connect-links reveal">
     <!-- ✏️ REPLACE the href values below with your actual links -->
-    <a href="mailto:rjanehipolito@gmail.com" target="_blank" rel="noopener noreferrer" class="connect-btn">
+    <button type="button" class="connect-btn" onclick="copyEmail(event)" aria-label="Copy email address">
       ✉ Email Me
-    </a>
+    </button>
     <a href="https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/" target="_blank" class="connect-btn">
       in LinkedIn
     </a>
@@ -908,6 +931,9 @@
     </a>
   </div>
 </section>
+
+<!-- Toast -->
+<div id="toast" class="toast" aria-hidden="true">Email copied</div>
 
 <!-- ─── FOOTER ─── -->
 <footer>
@@ -943,10 +969,59 @@
     reader.readAsDataURL(file);
   }
 
+  // ─── COPY EMAIL & TOAST ───
+  const EMAIL_ADDRESS = 'rjanehipolito@gmail.com';
+
+  function showToast(message = 'Email copied') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.setAttribute('aria-hidden', 'false');
+    toast.classList.add('show');
+    // hide after 1.8s
+    clearTimeout(window._toastTimeout);
+    window._toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+      toast.setAttribute('aria-hidden', 'true');
+    }, 1800);
+  }
+
+  function copyEmail(e) {
+    // prevent navigation if called from an anchor
+    if (e && e.preventDefault) e.preventDefault();
+
+    const copyToClipboard = (text) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      // fallback
+      return new Promise((resolve, reject) => {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'absolute';
+          textarea.style.left = '-9999px';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    };
+
+    copyToClipboard(EMAIL_ADDRESS)
+      .then(() => showToast('Email copied'))
+      .catch(() => showToast('Could not copy email'));
+  }
+
   // ─── DOWNLOAD RESUME ───
   function downloadResume(e) {
     e.preventDefault();
-    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com | https://www.link[...]`
+    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com\nLinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/`;
 
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
