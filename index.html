@@ -678,7 +678,12 @@
   <h1 class="hero-name">Raquel Jane<br><em>Hipolito</em></h1>
   <p class="hero-title">Inventory Specialist & E-commerce Strategist</p>
   <p class="hero-desc">
-    Freelance specialist with 10+ years of experience in supply chain management, e-commerce operations, and product content editing. I turn complex inventory challenges into streamlined, data-dr[...]
+    Inventory & E-commerce Specialist, and Product Content Editor with hands-on experience in procurement,
+supplier coordination, inventory planning, and end-to-end product lifecycle management across retail and online channels.
+Proven ability to support brands by translating sales and commercial requirements into actionable sourcing strategies, cost-efficient product
+promotions, accurate product listings, and on-time fulfillment. Experienced in e-commerce operations, product data management, pricing
+coordination, and content accuracy to improve sell-through and customer experience. Known for structured execution, cross-functional
+collaboration, and fast onboarding in dynamic, deadline-driven environments.
   </p>
   <div class="hero-ctas">
     <a href="#experience" class="btn-primary">
@@ -701,19 +706,21 @@
     <h2 class="section-title">About Me</h2>
   </div>
   <div class="about-grid reveal">
-    <!-- Photo Upload Area -->
-    <div class="about-photo-wrapper">
-      <div class="about-photo-placeholder" id="photoBox">
-        <div id="photoPrompt" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
-          <div class="photo-icon">🙂</div>
-          <div style="color:var(--muted);font-size:0.9rem;">Click to upload a photo</div>
-        </div>
-        <!-- placeholder image (hidden until user uploads) -->
-        <img id="uploadedPhoto" alt="Raquel Jane Hipolito" src="" style="display:none;" />
-        <!-- file input covers the whole box so clicking opens file picker -->
-        <input type="file" accept="image/*" onchange="loadPhoto(event)">
+      <!-- Photo Upload Area (inside <section id="about">) -->
+  <div class="about-photo-wrapper">
+    <div class="about-photo-placeholder" id="photoBox">
+      <div id="photoPrompt" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+        <div class="photo-icon">🙂</div>
+        <div style="color:var(--muted);font-size:0.9rem;">Click to upload a photo</div>
       </div>
+
+      <!-- Change this img: set src to your file and remove display:none -->
+      <img id="uploadedPhoto" alt="Raquel Jane Hipolito" src="Untitled design (1).png" style="display:block;" />
+
+      <!-- file input (optional — you can remove it if you want a purely static image) -->
+      <input type="file" accept="image/*" onchange="loadPhoto(event)">
     </div>
+  </div>
     <!-- About Text -->
     <div class="about-text">
       <p>
