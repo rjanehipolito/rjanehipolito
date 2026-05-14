@@ -891,7 +891,7 @@
   </p>
   <div class="connect-links reveal">
     <!-- ✏️ REPLACE the href values below with your actual links -->
-    <a href="mailto:rjanehipolito@gmail.com" class="connect-btn">
+    <a href="mailto:rjanehipolito@gmail.com" target="_blank" rel="noopener noreferrer" class="connect-btn">
       ✉ Email Me
     </a>
     <a href="https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/" target="_blank" class="connect-btn">
@@ -946,7 +946,7 @@
   // ─── DOWNLOAD RESUME ───
   function downloadResume(e) {
     e.preventDefault();
-    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com | https://www.link[...]
+    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com | https://www.link[...]`
 
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
