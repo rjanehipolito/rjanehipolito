@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Raquel Jane Hipolito | Portfolio</title>
-<link href="Untitled design (1).png" rel="stylesheet"/>
 <style>
   :root {
     --bg: #0d0d0d;
@@ -31,10 +30,6 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
-
-  /* ─── NOISE OVERLAY ─── */
-  /* Removed the truncated/invalid data URL which was breaking CSS parsing and preventing the page from loading.
-     If you'd like a subtle noise overlay we can add a properly encoded SVG data URL or use a CSS pattern. */
 
   /* ─── NAV ─── */
   nav {
@@ -247,52 +242,21 @@
     justify-content: center;
   }
 
-  .about-photo-placeholder {
+  /* STATIC photo frame — no upload, no click */
+  .about-photo {
     width: 280px;
     aspect-ratio: 3/4;
     background: var(--surface2);
     border: 1px solid rgba(201,168,76,0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    color: var(--muted);
-    font-size: 0.85rem;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.3s;
   }
 
-  .about-photo-placeholder:hover { border-color: rgba(201,168,76,0.4); }
-
-  .about-photo-placeholder input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
-
-  .about-photo-placeholder img {
-    position: absolute;
-    inset: 0;
+  .about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .photo-icon {
-    width: 48px; height: 48px;
-    border: 1px dashed rgba(201,168,76,0.4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
   }
 
   .about-corner {
@@ -535,7 +499,7 @@
     color: var(--gold-light);
   }
 
-  /* ─── CONNECT / LINKS ─── */
+  /* ─── CONNECT ─── */
   #connect { background: var(--bg); text-align: center; }
 
   .connect-desc {
@@ -575,7 +539,6 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
 
-  /* Toast for copy feedback */
   .toast {
     position: fixed;
     bottom: 2rem;
@@ -679,23 +642,16 @@
   <p class="hero-title">Inventory Specialist & E-commerce Strategist</p>
   <p class="hero-desc">
     Inventory & E-commerce Specialist, and Product Content Editor with hands-on experience in procurement,
-supplier coordination, inventory planning, and end-to-end product lifecycle management across retail and online channels.
-Proven ability to support brands by translating sales and commercial requirements into actionable sourcing strategies, cost-efficient product
-promotions, accurate product listings, and on-time fulfillment. Experienced in e-commerce operations, product data management, pricing
-coordination, and content accuracy to improve sell-through and customer experience. Known for structured execution, cross-functional
-collaboration, and fast onboarding in dynamic, deadline-driven environments.
+    supplier coordination, inventory planning, and end-to-end product lifecycle management across retail and online channels.
+    Proven ability to support brands by translating sales and commercial requirements into actionable sourcing strategies, cost-efficient product
+    promotions, accurate product listings, and on-time fulfillment. Experienced in e-commerce operations, product data management, pricing
+    coordination, and content accuracy to improve sell-through and customer experience. Known for structured execution, cross-functional
+    collaboration, and fast onboarding in dynamic, deadline-driven environments.
   </p>
   <div class="hero-ctas">
-    <a href="#experience" class="btn-primary">
-      ✦ View My Work
-    </a>
-    <a href="#connect" class="btn-outline">
-      Get In Touch
-    </a>
-    <!-- DOWNLOAD RESUME BUTTON -->
-    <a href="#" class="btn-outline" onclick="downloadResume(event)">
-      ↓ Download Resume
-    </a>
+    <a href="#experience" class="btn-primary">✦ View My Work</a>
+    <a href="#connect" class="btn-outline">Get In Touch</a>
+    <a href="#" class="btn-outline" onclick="downloadResume(event)">↓ Download Resume</a>
   </div>
 </section>
 
@@ -706,28 +662,24 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
     <h2 class="section-title">About Me</h2>
   </div>
   <div class="about-grid reveal">
-      <!-- Photo Upload Area (inside <section id="about">) -->
-  <div class="about-photo-wrapper">
-    <div class="about-photo-placeholder" id="photoBox">
-      <div id="photoPrompt" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
-        <div class="photo-icon">🙂</div>
-        <div style="color:var(--muted);font-size:0.9rem;">Click to upload a photo</div>
+
+    <!-- ✅ STATIC PHOTO (no upload, no click) -->
+    <div class="about-photo-wrapper">
+      <div class="about-photo">
+        <span class="about-corner tl"></span>
+        <span class="about-corner br"></span>
+        <!-- 👇 Just change the src below to your photo filename -->
+        <img src="Untitled design (1).png" alt="Raquel Jane Hipolito" />
       </div>
-
-      <!-- Change this img: set src to your file and remove display:none -->
-      <img id="uploadedPhoto" alt="Raquel Jane Hipolito" src="Untitled design (1).png" style="display:block;" />
-
-      <!-- file input (optional — you can remove it if you want a purely static image) -->
-      <input type="file" accept="image/*" onchange="loadPhoto(event)">
     </div>
-  </div>
-    <!-- About Text -->
+
+    <!-- ✅ FULL About Text (no more [...]) -->
     <div class="about-text">
       <p>
-        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product con[...]
+        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product content. My career has been built on bridging the gap between operations and commercial strategy—making sure the right product is available, priced correctly, and presented well across every channel.
       </p>
       <p>
-        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving strong webstore growth and high-performing email [...]
+        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving strong webstore growth and high-performing email campaigns at <strong style="color:var(--gold-light)">Sumo Yoga</strong>, I've learned how to turn data, forecasts, and customer behavior into clear, actionable plans. I love the balance of spreadsheets and storytelling—translating numbers into product strategy, and turning product strategy into content that actually converts.
       </p>
       <p>
         I'm available as a freelance specialist—ready to support brands with smarter supply chains, better product listings, and stronger e-commerce performance.
@@ -739,7 +691,7 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
         </div>
         <div class="stat-item">
           <span class="stat-num">100%</span>
-          <p class="stat-label">Complete Accurate Timely Stock Levels</p>
+          <p class="stat-label">Accurate Timely Stock Levels</p>
         </div>
         <div class="stat-item">
           <span class="stat-num">130%</span>
@@ -920,7 +872,6 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
     Open to freelance projects in supply chain, inventory management, e-commerce operations, and product content. Let's talk about how I can help your brand.
   </p>
   <div class="connect-links reveal">
-    <!-- ✏️ REPLACE the href values below with your actual links -->
     <button type="button" class="connect-btn" onclick="copyEmail(event)" aria-label="Copy email address">
       ✉ Email Me
     </button>
@@ -939,7 +890,6 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
   </div>
 </section>
 
-<!-- Toast -->
 <div id="toast" class="toast" aria-hidden="true">Email copied</div>
 
 <!-- ─── FOOTER ─── -->
@@ -961,21 +911,6 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
-  // ─── PHOTO UPLOAD ───
-  function loadPhoto(event) {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const img = document.getElementById('uploadedPhoto');
-      img.src = e.target.result;
-      img.style.display = 'block';
-      const prompt = document.getElementById('photoPrompt');
-      if (prompt) prompt.style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  }
-
   // ─── COPY EMAIL & TOAST ───
   const EMAIL_ADDRESS = 'rjanehipolito@gmail.com';
 
@@ -985,7 +920,6 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
     toast.textContent = message;
     toast.setAttribute('aria-hidden', 'false');
     toast.classList.add('show');
-    // hide after 1.8s
     clearTimeout(window._toastTimeout);
     window._toastTimeout = setTimeout(() => {
       toast.classList.remove('show');
@@ -994,14 +928,11 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
   }
 
   function copyEmail(e) {
-    // prevent navigation if called from an anchor
     if (e && e.preventDefault) e.preventDefault();
-
     const copyToClipboard = (text) => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         return navigator.clipboard.writeText(text);
       }
-      // fallback
       return new Promise((resolve, reject) => {
         try {
           const textarea = document.createElement('textarea');
@@ -1019,7 +950,6 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
         }
       });
     };
-
     copyToClipboard(EMAIL_ADDRESS)
       .then(() => showToast('Email copied'))
       .catch(() => showToast('Could not copy email'));
@@ -1028,8 +958,11 @@ collaboration, and fast onboarding in dynamic, deadline-driven environments.
   // ─── DOWNLOAD RESUME ───
   function downloadResume(e) {
     e.preventDefault();
-    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com\nLinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/`;
+    const content = `RAQUEL JANE HIPOLITO
+Supply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor
 
+CONTACT: rjanehipolito@gmail.com
+LinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/`;
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
