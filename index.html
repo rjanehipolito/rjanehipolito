@@ -33,15 +33,8 @@
   }
 
   /* ─── NOISE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctave[...]
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
+  /* Removed the truncated/invalid data URL which was breaking CSS parsing and preventing the page from loading.
+     If you'd like a subtle noise overlay we can add a properly encoded SVG data URL or use a CSS pattern. */
 
   /* ─── NAV ─── */
   nav {
@@ -662,7 +655,7 @@
   <h1 class="hero-name">Raquel Jane<br><em>Hipolito</em></h1>
   <p class="hero-title">Inventory Specialist & E-commerce Strategist</p>
   <p class="hero-desc">
-    Freelance specialist with 10+ years of experience in supply chain management, e-commerce operations, and product content editing. I turn complex inventory challenges into streamlined, data-driven [...]
+    Freelance specialist with 10+ years of experience in supply chain management, e-commerce operations, and product content editing. I turn complex inventory challenges into streamlined, data-driven solutions that help brands grow.
   </p>
   <div class="hero-ctas">
     <a href="#experience" class="btn-primary">
@@ -688,19 +681,26 @@
     <!-- Photo Upload Area -->
     <div class="about-photo-wrapper">
       <div class="about-photo-placeholder" id="photoBox">
-        <img alt="Raquel Jane Hipolito" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwL[...]
+        <div id="photoPrompt" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+          <div class="photo-icon">🙂</div>
+          <div style="color:var(--muted);font-size:0.9rem;">Click to upload a photo</div>
+        </div>
+        <!-- placeholder image (hidden until user uploads) -->
+        <img id="uploadedPhoto" alt="Raquel Jane Hipolito" src="" style="display:none;" />
+        <!-- file input covers the whole box so clicking opens file picker -->
+        <input type="file" accept="image/*" onchange="loadPhoto(event)">
       </div>
     </div>
     <!-- About Text -->
     <div class="about-text">
       <p>
-        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product con[...]
+        I'm a results-driven supply chain and e-commerce professional with over a decade of hands-on experience spanning procurement, inventory planning, digital store management, and product content optimization.
       </p>
       <p>
-        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving 50% webstore growth and 75% email open rates at S[...]
+        From managing multi-million peso procurement budgets at <strong style="color:var(--gold-light)">Sophia Jewellery Inc.</strong> to driving strong webstore growth and high-performing email campaigns, I focus on practical improvements that move metrics.
       </p>
       <p>
-        I'm now available as a freelance specialist—ready to support brands with smarter supply chains, better product listings, and stronger e-commerce performance.
+        I'm available as a freelance specialist—ready to support brands with smarter supply chains, better product listings, and stronger e-commerce performance.
       </p>
       <div class="stats-row">
         <div class="stat-item">
@@ -930,14 +930,15 @@
 
   // ─── PHOTO UPLOAD ───
   function loadPhoto(event) {
-    const file = event.target.files[0];
+    const file = event.target.files && event.target.files[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = function(e) {
       const img = document.getElementById('uploadedPhoto');
       img.src = e.target.result;
       img.style.display = 'block';
-      document.getElementById('photoPrompt').style.display = 'none';
+      const prompt = document.getElementById('photoPrompt');
+      if (prompt) prompt.style.display = 'none';
     };
     reader.readAsDataURL(file);
   }
@@ -945,42 +946,7 @@
   // ─── DOWNLOAD RESUME ───
   function downloadResume(e) {
     e.preventDefault();
-    // This creates a text version for download
-    // To use a real PDF, replace this with: window.open('your-resume-link.pdf')
-    const content = `RAQUEL JANE HIPOLITO
-Supply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor
-
-CONTACT: rjanehipolito@gmail.com | https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/
-
-SUMMARY:
-Freelance Inventory & E-commerce Specialist with 10+ years experience in procurement, supplier coordination, inventory planning, and end-to-end product lifecycle management.
-
-EXPERIENCE:
-Supply Chain Manager / Buying Team Leader — Sophia Jewellery Inc. (2021–2026)
-Marketing & E-commerce Operations Specialist — Sumo Yoga (Dec 2025–Mar 2026)
-Inventory and Buying Specialist — Sophia Jewellery Inc. (2016–2021)
-Supply Chain Encoder — Sophia Jewellery Inc. (2014–2016)
-
-EDUCATION:
-B.S. Economics & B.S. Architecture — Western Mindanao State University (2009–2014)
-
-CERTIFICATIONS:
-- Python Fundamentals for Beginners
-- AI & Automation in Lead Generation
-- Amazon Product Research Introduction
-- General Virtual Assistant Training — Freelance Academy
-
-SKILLS:
-Supply Chain & Inventory: Procurement Planning, PO Tracking, Vendor Management, Inventory Monitoring, Forecasting, SKU Management, SOP Creation, Budget Compliance
-
-E-commerce Operations: Shopify Management, Product Data, Email Marketing, Klaviyo, SEO & Keywords, Pricing Strategy, Order Fulfillment, Conversion Optimization
-
-Content & Social Media: Content Strategy, Video & Static Content, Social Media Management, Canva, CapCut, Meta Business Suite, Influencer Outreach, Content Calendar
-
-LINKS:
-LinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/
-Upwork: https://www.upwork.com/freelancers/~016768aa19d374eaa9
-OnlineJobs.ph: https://v2.onlinejobs.ph/jobseekers/info/4593022`;
+    const content = `RAQUEL JANE HIPOLITO\nSupply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor\n\nCONTACT: rjanehipolito@gmail.com | https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/\n\nSUMMARY:\nFreelance Inventory & E-commerce Specialist with 10+ years experience in procurement, supplier coordination, inventory planning, and end-to-end product lifecycle management.\n\nEXPERIENCE:\nSupply Chain Manager / Buying Team Leader — Sophia Jewellery Inc. (2021–2026)\nMarketing & E-commerce Operations Specialist — Sumo Yoga (Dec 2025–Mar 2026)\nInventory and Buying Specialist — Sophia Jewellery Inc. (2016–2021)\nSupply Chain Encoder — Sophia Jewellery Inc. (2014–2016)\n\nEDUCATION:\nB.S. Economics & B.S. Architecture — Western Mindanao State University (2009–2014)\n\nCERTIFICATIONS:\n- Python Fundamentals for Beginners\n- AI & Automation in Lead Generation\n- Amazon Product Research Introduction\n- General Virtual Assistant Training — Freelance Academy\n\nSKILLS:\nSupply Chain & Inventory: Procurement Planning, PO Tracking, Vendor Management, Inventory Monitoring, Forecasting, SKU Management, SOP Creation, Budget Compliance\n\nE-commerce Operations: Shopify Management, Product Data, Email Marketing, Klaviyo, SEO & Keywords, Pricing Strategy, Order Fulfillment, Conversion Optimization\n\nContent & Social Media: Content Strategy, Video & Static Content, Social Media Management, Canva, CapCut, Meta Business Suite, Influencer Outreach, Content Calendar\n\nLINKS:\nLinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/\nUpwork: https://www.upwork.com/freelancers/~016768aa19d374eaa9\nOnlineJobs.ph: https://v2.onlinejobs.ph/jobseekers/info/4593022`;
 
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
