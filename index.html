@@ -651,7 +651,7 @@
   <div class="hero-ctas">
     <a href="#experience" class="btn-primary">✦ View My Work</a>
     <a href="#connect" class="btn-outline">Get In Touch</a>
-    <a href="#" class="btn-outline" onclick="downloadResume(event)">↓ Download Resume</a>
+    <button type="button" class="btn-outline" onclick="downloadResume(event)">↓ Download Resume</button>
   </div>
 </section>
 
@@ -884,9 +884,9 @@
     <a href="https://v2.onlinejobs.ph/jobseekers/info/4593022" target="_blank" class="connect-btn">
       ↗ OnlineJobs.ph
     </a>
-    <a href="#" onclick="Hipolito, Raquel Jane.pdf" class="btn-primary" style="text-decoration:none;">
+    <button type="button" class="btn-primary" onclick="downloadResume(event)">
       ↓ Download Resume
-    </a>
+    </button>
   </div>
 </section>
 
@@ -962,7 +962,49 @@
 Supply Chain Inventory Specialist | E-commerce Specialist | Social Media Content & Product Editor
 
 CONTACT: rjanehipolito@gmail.com
-LinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/`;
+LinkedIn: https://www.linkedin.com/in/raquel-jane-hipolito-17167239a/
+
+SUMMARY
+Inventory & E-commerce Specialist with over a decade of hands-on experience in procurement, supplier coordination, inventory planning, and product lifecycle management. Proven ability to support brands with strategic sourcing, accurate product listings, and on-time fulfillment.
+
+EXPERIENCE
+
+2021 – April 2026 | Supply Chain Manager / Buying Team Leader
+Sophia Jewellery Inc.
+• Managed monthly procurement budgets with 100% budget compliance
+• Developed forecast-based purchasing plans
+• Led supplier sourcing and vendor evaluation
+• Standardized purchasing workflows with SOPs
+• Partnered with marketing on promotional campaigns
+
+December 2025 – March 2026 | Marketing & E-commerce Operations Specialist
+Sumo Yoga
+• Optimized Shopify webstore (50% monthly increase in visits)
+• Built email marketing flows via Klaviyo (75% open rate)
+• Created SEO-optimized product descriptions
+• Drove 130%+ social media follower growth
+
+2016 – 2021 | Inventory and Buying Specialist
+Sophia Jewellery Inc.
+• Analyzed sales and inventory data for buying insights
+• Managed product listings and catalog updates
+• Monitored supplier performance and pricing
+
+2014 – 2016 | Supply Chain Encoder
+Sophia Jewellery Inc.
+• Encoded product information and inventory data
+• Ensured accurate stock levels with zero-error data entry
+
+SKILLS
+Supply Chain: Procurement Planning, PO Tracking, Vendor Management, Inventory Monitoring, Forecasting
+E-commerce: Shopify, Product Data Management, Email Marketing, SEO, Pricing Strategy
+Tools: Excel, Google Sheets, Airtable, Klaviyo, Canva, CapCut, Notion, Slack, Asana
+
+CERTIFICATIONS
+• Python Fundamentals for Beginners
+• Artificial Intelligence & Automation in Lead Generation
+• 2025 Amazon Product Research Introduction
+• General Virtual Assistant Training – Freelance Academy`;
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
